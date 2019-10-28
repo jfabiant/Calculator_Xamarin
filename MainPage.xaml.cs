@@ -18,61 +18,56 @@ namespace Calculator
             this.BindingContext = new OperacionesViewModel();
         }
 
-        public void OnSelectNumber(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-            string pressed = button.Text;
+		//void OnSelectNumber(object sender, EventArgs e)
+		//{
+		//	Button button = (Button)sender;
+		//	string pressed = button.Text;
 
-            if (this.resultText.Text == "0" || currentState < 0)
-            {
-                this.resultText.Text = "";
-                if (currentState < 0)
-                    currentState *= -1;
-            }
+		//	if (this.resultText.Text == "0" || currentState < 0) {
+		//		this.resultText.Text = "";
+		//		if (currentState < 0)
+		//			currentState *= -1;
+		//	}
 
-            this.resultText.Text += pressed;
+		//	this.resultText.Text += pressed;
 
-            double number;
-            if (double.TryParse(this.resultText.Text, out number))
-            {
-                this.resultText.Text = number.ToString("N0");
-                if (currentState == 1)
-                {
-                    firstNumber = number;
-                }
-                else
-                {
-                    secondNumber = number;
-                }
-            }
-        }
+		//	double number;
+		//	if (double.TryParse(this.resultText.Text, out number)) {
+		//		this.resultText.Text = number.ToString("N0");
+		//		if (currentState == 1) {
+		//			firstNumber = number;
+		//		} else {
+		//			secondNumber = number;
+		//		}
+		//	}
+		//}
 
-        //void OnSelectOperator(object sender, EventArgs e)
-        //{
-        //	currentState = -2;
-        //	Button button = (Button)sender;
-        //	string pressed = button.Text;
-        //	mathOperator = pressed;
-        //}
+		//void OnSelectOperator(object sender, EventArgs e)
+		//{
+		//	currentState = -2;
+		//	Button button = (Button)sender;
+		//	string pressed = button.Text;
+		//	mathOperator = pressed;
+		//}
 
-        //void OnClear(object sender, EventArgs e)
-        //{
-        //	firstNumber = 0;
-        //	secondNumber = 0;
-        //	currentState = 1;
-        //	this.resultText.Text = "0";
-        //}
+		//void OnClear(object sender, EventArgs e)
+		//{
+		//	firstNumber = 0;
+		//	secondNumber = 0;
+		//	currentState = 1;
+		//	this.resultText.Text = "0";
+		//}
 
-        //void OnCalculate(object sender, EventArgs e)
-        //{
-        //	if (currentState == 2)
-        //          {
-        //              var result = SimpleCalculator.Calculate(firstNumber, secondNumber, mathOperator);
+		//void OnCalculate(object sender, EventArgs e)
+		//{
+		//	if (currentState == 2)
+  //          {
+  //              var result = SimpleCalculator.Calculate(firstNumber, secondNumber, mathOperator);
 
-        //              this.resultText.Text = result.ToString();
-        //              firstNumber = result;
-        //              currentState = -1;
-        //	}
-        //}
-    }
+  //              this.resultText.Text = result.ToString();
+  //              firstNumber = result;
+  //              currentState = -1;
+		//	}
+		//}
+	}
 }

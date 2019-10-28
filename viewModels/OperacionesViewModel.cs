@@ -8,153 +8,141 @@ namespace Calculator.viewModels
 {
     public class OperacionesViewModel : ViewModelBase
     {
-        string currentEntry = "0";
-        string historyString = "";
-        bool isSumDisplayed = false;
-        double accumulatedSum = 0;
+
+        int firstNumber;
+        public int FirstNumber
+        {
+            get { return firstNumber; }
+            set
+            {
+                if (firstNumber != value)
+                {
+                    firstNumber = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        int secondNumber;
+        public int SecondNumber
+        {
+            get { return secondNumber; }
+            set
+            {
+                if (secondNumber != value)
+                {
+                    secondNumber = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        String result;
+        public String Result
+        {
+            get { return result; }
+            set
+            {
+                if (result != value)
+                {
+                    result = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        String operation;
+        public String Operation
+        {
+            get { return operation; }
+            set
+            {
+                if (operation != value)
+                {
+                    operation = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+
+        public ICommand OnClear { protected set; get; }
+        public ICommand OnCalculate { protected set; get; }
+        public ICommand OnSelectOperator { protected set; get; }
+        public ICommand NumericCommand { protected set; get; }
 
         public OperacionesViewModel()
         {
-            ClearCommand = new Command(
-                execute: () =>
-                {
-                    HistoryString = "";
-                    accumulatedSum = 0;
-                    CurrentEntry = "0";
-                    isSumDisplayed = false;
-                    RefreshCanExecutes();
-                });
 
-            ClearEntryCommand = new Command(
-                execute: () =>
-                {
-                    CurrentEntry = "0";
-                    isSumDisplayed = false;
-                    RefreshCanExecutes();
-                });
+            Result = "0";
+            NumericCommand = new Command<String>(
+                 execute: (String parameter) =>
+                 {
+                     Result = parameter;
+                 });
 
-            BackspaceCommand = new Command(
-                execute: () =>
-                {
-                    CurrentEntry = CurrentEntry.Substring(0, CurrentEntry.Length - 1);
+            OnSelectOperator = new Command<String>(
+                 execute: (String parameter) =>
+                 {
+                     if (parameter == "+")
+                     {
+                         FirstNumber = Int32.Parse(Result);
+                         Operation = "s";
+                     }
+                     if (parameter == "-")
+                     {
+                         FirstNumber = Int32.Parse(Result);
+                         Operation = "r";
+                     }
+                     if (parameter == "*")
+                     {
+                         FirstNumber = Int32.Parse(Result);
+                         Operation = "m";
+                     }
+                     if (parameter == "/")
+                     {
+                         FirstNumber = Int32.Parse(Result);
+                         Operation = "d";
+                     }
+                 });
 
-                    if (CurrentEntry.Length == 0)
-                    {
-                        CurrentEntry = "0";
-                    }
+            OnCalculate = new Command(() =>
+            {
+                SecondNumber = Int32.Parse(Result);
+                if(Operation == "s")
+                {
 
-                    RefreshCanExecutes();
-                },
-                canExecute: () =>
-                {
-                    return !isSumDisplayed && (CurrentEntry.Length > 1 || CurrentEntry[0] != '0');
-                });
+                }
+                double resultOper = 0;
 
-            NumericCommand = new Command<string>(
-                execute: (string parameter) =>
+                switch (Operation)
                 {
-                    if (isSumDisplayed || CurrentEntry == "0")
-                        CurrentEntry = parameter;
-                    else
-                        CurrentEntry += parameter;
+                    case "s":
+                        resultOper = FirstNumber + SecondNumber;
+                        break;
+                    case "r":
+                        resultOper = FirstNumber - SecondNumber;
+                        break;
+                    case "m":
+                        resultOper = FirstNumber * SecondNumber;
+                        break;
+                    case "d":
+                        resultOper = FirstNumber / SecondNumber;
+                        break;
+                }
+                Result = resultOper + "";
 
-                    isSumDisplayed = false;
-                    RefreshCanExecutes();
-                },
-                canExecute: (string parameter) =>
-                {
-                    return isSumDisplayed || CurrentEntry.Length < 16;
-                });
+            });
 
-            DecimalPointCommand = new Command(
-                execute: () =>
-                {
-                    if (isSumDisplayed)
-                        CurrentEntry = "0.";
-                    else
-                        CurrentEntry += ".";
+            OnClear = new Command(() =>
+            {
+                Result = "0";
+                FirstNumber = 0;
+                SecondNumber = 0;
+            });
 
-                    isSumDisplayed = false;
-                    RefreshCanExecutes();
-                },
-                canExecute: () =>
-                {
-                    return isSumDisplayed || !CurrentEntry.Contains(".");
-                });
-
-            AddCommand = new Command(
-                execute: () =>
-                {
-                    double value = Double.Parse(CurrentEntry);
-                    HistoryString += value.ToString() + " + ";
-                    accumulatedSum += value;
-                    CurrentEntry = accumulatedSum.ToString();
-                    isSumDisplayed = true;
-                    RefreshCanExecutes();
-                },
-                canExecute: () =>
-                {
-                    return !isSumDisplayed;
-                });
         }
 
-        void RefreshCanExecutes()
-        {
-            ((Command)BackspaceCommand).ChangeCanExecute();
-            ((Command)NumericCommand).ChangeCanExecute();
-            ((Command)DecimalPointCommand).ChangeCanExecute();
-            ((Command)AddCommand).ChangeCanExecute();
-        }
 
-        public string CurrentEntry
-        {
-            private set { SetProperty(ref currentEntry, value); }
-            get { return currentEntry; }
-        }
-
-        public string HistoryString
-        {
-            private set { SetProperty(ref historyString, value); }
-            get { return historyString; }
-        }
-
-        public ICommand ClearCommand { private set; get; }
-
-        public ICommand ClearEntryCommand { private set; get; }
-
-        public ICommand BackspaceCommand { private set; get; }
-
-        public ICommand NumericCommand { private set; get; }
-
-        public ICommand DecimalPointCommand { private set; get; }
-
-        public ICommand AddCommand { private set; get; }
-
-        public void SaveState(IDictionary<string, object> dictionary)
-        {
-            dictionary["CurrentEntry"] = CurrentEntry;
-            dictionary["HistoryString"] = HistoryString;
-            dictionary["isSumDisplayed"] = isSumDisplayed;
-            dictionary["accumulatedSum"] = accumulatedSum;
-        }
-
-        public void RestoreState(IDictionary<string, object> dictionary)
-        {
-            CurrentEntry = GetDictionaryEntry(dictionary, "CurrentEntry", "0");
-            HistoryString = GetDictionaryEntry(dictionary, "HistoryString", "");
-            isSumDisplayed = GetDictionaryEntry(dictionary, "isSumDisplayed", false);
-            accumulatedSum = GetDictionaryEntry(dictionary, "accumulatedSum", 0.0);
-
-            RefreshCanExecutes();
-        }
-
-        public T GetDictionaryEntry<T>(IDictionary<string, object> dictionary,
-                                        string key, T defaultValue)
-        {
-            if (dictionary.ContainsKey(key))
-                return (T)dictionary[key];
-
-            return defaultValue;
-        }
     }
 }

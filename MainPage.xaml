@@ -30,70 +30,70 @@
 
         <Label x:Name="resultText"/>
 
-        <Label FontSize="48" FontAttributes="Bold" BackgroundColor="Black" Text="{Binding CurrentEntry}"
+        <Label FontSize="48" FontAttributes="Bold" BackgroundColor="Black" Text="{Binding Result}"
               TextColor="White" HorizontalTextAlignment="End" VerticalTextAlignment="Center"
               LineBreakMode="NoWrap" Grid.ColumnSpan="4" />
 
        <Button Text="7" Grid.Row="1" Grid.Column="0"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="7" />
         
        <Button Text="8" Grid.Row="1" Grid.Column="1"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="8" />
        <Button Text="9" Grid.Row="1" Grid.Column="2"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="9" />
 
       <Button Text="4" Grid.Row="2" Grid.Column="0"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="4" />
        <Button Text="5" Grid.Row="2" Grid.Column="1"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="5" />
        <Button Text="6" Grid.Row="2" Grid.Column="2"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="6" />
 
       <Button Text="1" Grid.Row="3" Grid.Column="0"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="1" />
        <Button Text="2" Grid.Row="3" Grid.Column="1"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="2" />
        <Button Text="3" Grid.Row="3" Grid.Column="2"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="3" />
        <Button Text="0" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
                BackgroundColor="White" TextColor="Black"
-               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" />
+               FontSize="36" BorderRadius="0" Command="{Binding NumericCommand}" CommandParameter="0" />
 
         
         
         
        <Button Text="÷" Grid.Row="1" Grid.Column="3"
                 BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
-                FontSize="36" BorderRadius="0" Command="{Binding OnSelectOperator}" />
+                FontSize="36" BorderRadius="0" Command="{Binding OnSelectOperator}" CommandParameter="/" />
        <Button Text="×" Grid.Row="2" Grid.Column="3"
                 BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
-                FontSize="36" BorderRadius="0" Command="{Binding OnSelectOperator}" />
+                FontSize="36" BorderRadius="0" Command="{Binding OnSelectOperator}" CommandParameter="*"/>
        <Button Text="-" Grid.Row="3" Grid.Column="3"
                 BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
-                FontSize="36" BorderRadius="0" Command="{Binding OnSelectOperator}" />
+                FontSize="36" BorderRadius="0" Command="{Binding OnSelectOperator}" CommandParameter="-"/>
        <Button Text="+" Grid.Row="4" Grid.Column="3"
                 BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
-                FontSize="36" BorderRadius="0" Command="{Binding AddCommand}" />
+                FontSize="36" BorderRadius="0" Command="{Binding OnSelectOperator}" CommandParameter="+"/>
 
 
 
 
         <Button Text="C" Grid.Row="5" Grid.Column="0"
                 BackgroundColor="#808080" TextColor="White"
-                FontSize="36" BorderRadius="0" Command="{Binding ClearCommand}" />
+                FontSize="36" BorderRadius="0" Command="{Binding OnClear}" />
 
         <Button Text="=" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3"
                 BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
-                FontSize="36" BorderRadius="0" Clicked="OnCalculate" />
+                FontSize="36" BorderRadius="0" Command="{Binding OnCalculate}" />
 
     </Grid>
     

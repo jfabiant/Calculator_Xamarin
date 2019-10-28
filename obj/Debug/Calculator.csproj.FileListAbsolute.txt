@@ -1,0 +1,16 @@
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Calculator.dll
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Calculator.pdb
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Xamarin.Forms.Core.dll
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Xamarin.Forms.Platform.dll
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Xamarin.Forms.Xaml.dll
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Xamarin.Forms.Core.pdb
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Xamarin.Forms.Core.xml
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Xamarin.Forms.Platform.pdb
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Xamarin.Forms.Xaml.pdb
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\bin\Debug\Xamarin.Forms.Xaml.xml
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\obj\Debug\Calculator.csprojAssemblyReference.cache
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\obj\Debug\Calculator.MainPage.xaml.g.cs
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\obj\Debug\Calculator.csproj.CopyComplete
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\obj\Debug\Calculator.dll
+D:\XamarinProjects\XamarinFormsBasicCalculator\Calculator\obj\Debug\Calculator.pdb

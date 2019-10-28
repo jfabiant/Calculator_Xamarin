@@ -8,9 +8,11 @@ namespace Calculator.viewModels
 {
     public class OperacionesViewModel : ViewModelBase
     {
+        int currentState = 1;
+        String mathOperator;
 
-        int firstNumber;
-        public int FirstNumber
+        double firstNumber;
+        public double FirstNumber
         {
             get { return firstNumber; }
             set
@@ -23,8 +25,8 @@ namespace Calculator.viewModels
             }
         }
 
-        int secondNumber;
-        public int SecondNumber
+        double secondNumber;
+        public double SecondNumber
         {
             get { return secondNumber; }
             set
@@ -78,7 +80,28 @@ namespace Calculator.viewModels
             NumericCommand = new Command<String>(
                  execute: (String parameter) =>
                  {
-                     Result = parameter;
+                     if (Result == "0" || currentState < 0)
+                     {
+                         Result = "";
+                         if (currentState < 0)
+                             currentState *= -1;
+                     }
+                     Result += parameter;
+
+                     double number;
+                     if (double.TryParse(Result, out number))
+                     {
+                         Result = number.ToString("N0");
+                         if (currentState == 1)
+                         {
+                             FirstNumber = number;
+                         }
+                         else
+                         {
+                             SecondNumber = number;
+                         }
+                     }
+
                  });
 
             OnSelectOperator = new Command<String>(
@@ -104,15 +127,15 @@ namespace Calculator.viewModels
                          FirstNumber = Int32.Parse(Result);
                          Operation = "d";
                      }
+
+                     currentState = -2;
+                     mathOperator = parameter;
+
                  });
 
             OnCalculate = new Command(() =>
             {
                 SecondNumber = Int32.Parse(Result);
-                if(Operation == "s")
-                {
-
-                }
                 double resultOper = 0;
 
                 switch (Operation)
@@ -141,6 +164,7 @@ namespace Calculator.viewModels
                 SecondNumber = 0;
             });
 
+            
         }
 
 
